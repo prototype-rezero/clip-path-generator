@@ -72,6 +72,9 @@ body {
     justify-content: center;
     padding: 20px;
     margin: 0;
+    min-width: 1240px;
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
 .container {
@@ -85,7 +88,7 @@ body {
 }
 
 .hhlder {
-    width: 100%;
+    min-width: 1200px;
     max-width: 1200px;    
     border-radius: 15px;
     overflow: hidden;
@@ -180,9 +183,9 @@ svg {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
+    min-width: 1200px;
+    max-width: 1200px;
     box-shadow: 0 0 20px #471e061f;
 }
 
