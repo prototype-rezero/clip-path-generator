@@ -123,10 +123,9 @@ h2 {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    min-height: 600px;
-    min-width: 1200px;
+    min-width: 100%;
     margin: 0 auto;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 0 20px #471e0610;
     overflow: auto;
 }
@@ -181,8 +180,8 @@ svg {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    max-width: 1200px;
     width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     box-shadow: 0 0 20px #471e061f;
 }
