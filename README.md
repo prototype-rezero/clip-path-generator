@@ -1,1 +1,2 @@
-# clip-path-generator
+# clip-path-generator 
+###this is a tool that can helps u create some complex shapes directly without dofficult handmath calculations...
