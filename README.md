@@ -1,1 +1,3 @@
-# clip-path-generator
+# clip-path-generator use pc only!!
+### this is a tool that can helps u create some complex shapes directly without dofficult handmath calculations... 
+<https://prototype-rezero.github.io/clip-path-generator/>
