@@ -27,6 +27,8 @@ function init() {
 
    document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', () => draggingIdx = null);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchend', () => draggingIdx = null);
     render();
 }
 
@@ -97,16 +99,19 @@ function resetPoints() {
 
 function drag(e) {
     if (draggingIdx === null) return;
+    e.preventDefault();
     const rect = svg.getBoundingClientRect();
 
-    let rawX = e.clientX - rect.left;
-    let rawY = e.clientY - rect.top;
+    // ✅ Check for touch FIRST, then use those coordinates for rawX/rawY
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    // Clamp to canvas bounds
+    let rawX = clientX - rect.left;
+    let rawY = clientY - rect.top;
+
     rawX = Math.max(0, Math.min(rawX, canvas.clientWidth));
     rawY = Math.max(0, Math.min(rawY, canvas.clientHeight));
 
-    // Apply grid snapping
     const snappedX = gridSize > 1 ? Math.round(rawX / gridSize) * gridSize : rawX;
     const snappedY = gridSize > 1 ? Math.round(rawY / gridSize) * gridSize : rawY;
 
@@ -114,6 +119,7 @@ function drag(e) {
     points[draggingIdx].y = snappedY;
     render();
 }
+
 function generatePath(pts, r) {
     let d = "";
     for (let i = 0; i < pts.length; i++) {
@@ -157,6 +163,7 @@ function render() {
         c.setAttribute("cx", p.x); c.setAttribute("cy", p.y);
         c.setAttribute("r", 7); c.setAttribute("class", "handle");
         c.onmousedown = () => draggingIdx = i;
+        c.ontouchstart = (e) => { e.preventDefault(); draggingIdx = i; }; 
         svg.appendChild(c);
     });
 }
