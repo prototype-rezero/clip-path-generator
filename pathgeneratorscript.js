@@ -27,10 +27,9 @@ function init() {
         canvas.style.backgroundSize = `${gridSize}px ${gridSize}px`;
     });
 
-   document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', () => draggingIdx = null);
-    document.addEventListener('touchmove', drag, { passive: false });
-    document.addEventListener('touchend', () => draggingIdx = null);
+   document.addEventListener('pointermove', drag);
+    document.addEventListener('pointerup', () => draggingIdx = null);
+    document.addEventListener('pointercancel', () => draggingIdx = null);
     render();
 }
 
@@ -184,6 +183,12 @@ function render() {
         c.setAttribute("r", 7); c.setAttribute("class", "handle");
         c.onmousedown = () => { draggingIdx = i; lastInteractedIdx = i; };
         c.ontouchstart = (e) => { e.preventDefault(); draggingIdx = i; lastInteractedIdx = i; };
+        c.onpointerdown = (e) => { 
+        e.preventDefault();
+        draggingIdx = i; 
+        lastInteractedIdx = i;
+        c.setPointerCapture(e.pointerId);
+};
         svg.appendChild(c);
     });
 }

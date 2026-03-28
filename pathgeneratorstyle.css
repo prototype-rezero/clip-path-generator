@@ -134,6 +134,9 @@ h2 {
         linear-gradient(90deg, rgba(90, 51, 0, 0.75) 1px, transparent 1px);
     background-size: 10px 10px; /* Default grid size */
     transition: 0.3s;
+     touch-action: none;  /* Stops browser hijacking touch for scroll/zoom */
+    user-select: none;   /* Prevents text selection on drag */
+    -webkit-user-select: none;
 
 }
 
@@ -163,6 +166,8 @@ svg {
     height: 40px;
     z-index: 100;
     transition: 0.3s;
+     touch-action: none;
+    cursor: grab;
 }
 .handle:hover { 
     fill: var(--background); 
