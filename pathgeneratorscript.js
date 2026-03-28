@@ -55,13 +55,14 @@ function constrainPoints() {
 }
 
 function addPoint() {
-    const last = points[points.length - 1];
+    const idx = lastInteractedIdx !== null ? lastInteractedIdx : points.length - 1;
+    const last = points[idx];
     const offset = gridSize > 1 ? gridSize : 10;
 
-    let newX = last.x - offset;
+    let newX = last.x + offset;
     let newY = last.y;
 
-     if (newX < 0) {
+    if (newX < 0) {
         newX = 0;
         newY = last.y - offset;
     } else if (newX > canvas.clientWidth) {
@@ -75,10 +76,14 @@ function addPoint() {
     const snappedX = gridSize > 1 ? Math.round(newX / gridSize) * gridSize : newX;
     const snappedY = gridSize > 1 ? Math.round(newY / gridSize) * gridSize : newY;
 
-    points.push({ x: snappedX, y: snappedY });
+    // Insert AFTER the last interacted point instead of at the end
+    points.splice(idx + 1, 0, { x: snappedX, y: snappedY });
+
+    // Update lastInteractedIdx to the new point
+    lastInteractedIdx = idx + 1;
+
     render();
 }
-
 function deletePoint() {
     if (points.length > 3) {
         const idx = lastInteractedIdx !== null ? lastInteractedIdx : points.length - 1;
