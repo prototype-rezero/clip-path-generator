@@ -76,10 +76,8 @@ function addPoint() {
     const snappedX = gridSize > 1 ? Math.round(newX / gridSize) * gridSize : newX;
     const snappedY = gridSize > 1 ? Math.round(newY / gridSize) * gridSize : newY;
 
-    // Insert AFTER the last interacted point instead of at the end
     points.splice(idx + 1, 0, { x: snappedX, y: snappedY });
 
-    // Update lastInteractedIdx to the new point
     lastInteractedIdx = idx + 1;
 
     render();
