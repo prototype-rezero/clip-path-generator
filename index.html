@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clip-Path-Generator</title>
+    <title>Clip-Path-Generator-by-</title>
     <link rel="stylesheet" href="pathgeneratorstyle.css">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,18 +32,26 @@
     <div class="sliders container">    
         <div class="controls">
             <div class="control-group">
-                <label>Canvas Width : <span id="w-val" class="val">800</span>px</label>
+                 <div class="sliderdiv">
+                <label>Canvas Width : <span id="w-val" class="val">800</span>PX</label>
                 <input type="range" id="w-slider" min="100" max="1280" value="800">
-                <label style="margin-top:10px">Canvas Height : <span id="h-val" class="val">500</span>px</label>
+                </div>
+                <div class="sliderdiv">
+                <label>Canvas Height : <span id="h-val" class="val">500</span>PX</label>
                 <input type="range" id="h-slider" min="100" max="720" value="500">
+                </div>
             </div>
 
             <div class="control-group">
-                <label>Corner Radius : <span id="r-val" class="val">20</span>px</label>
+                <div class="sliderdiv">
+                <label>Corner Radius : <span id="r-val" class="val">20</span>PX</label>
                 <input type="range" id="r-slider" min="0" max="150" value="20">
+                </div>
                 
-                <label style="margin-top:10px">Grid Snap Size : <span id="g-val" class="val">10</span>px</label>
+                <div class="sliderdiv">
+                <label>Grid Snap Size : <span id="g-val" class="val">10</span>PX</label>
                 <input type="range" id="g-slider" min="1" max="100" value="10">
+                </div>
             </div>
             
             
@@ -55,7 +63,7 @@
             </div>
         </div>
     </div>
-
+    <div class="footer container">By <a href="https://github.com/prototype-rezero">Prototype-rezero</a></div>
     <script src="pathgeneratorscript.js"></script>
 </body>
 </html>

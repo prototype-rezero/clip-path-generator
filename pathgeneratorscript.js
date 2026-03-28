@@ -8,6 +8,7 @@ let points = [{x:20, y:20}, {x:780, y:20}, {x:780, y:480}, {x:20, y:480}];
 let radius = 20;
 let gridSize = 10;
 let draggingIdx = null;
+let lastInteractedIdx = null;
 
 function init() {
     // Setup Sliders
@@ -79,13 +80,21 @@ function addPoint() {
 
 function deletePoint() {
     if (points.length > 3) {
-        points.pop();
+        const idx = lastInteractedIdx !== null ? lastInteractedIdx : points.length - 1;
+        points.splice(idx, 1);
+
+        // Adjust lastInteractedIdx so it doesn't go out of bounds
+        if (lastInteractedIdx >= points.length) {
+            lastInteractedIdx = points.length - 1;
+        }
+
         render();
     }
 }
 
 function resetPoints() {
     points = [{x:20,y:20}, {x:780,y:20}, {x:780,y:480}, {x:20,y:480}];
+    
     document.getElementById('w-slider').value = 800;
     document.getElementById('w-val').innerText = 800;
     canvas.style.width = '800px';
@@ -93,7 +102,16 @@ function resetPoints() {
     document.getElementById('h-slider').value = 500;
     document.getElementById('h-val').innerText = 500;
     canvas.style.height = '500px';
-    
+
+    document.getElementById('r-slider').value = 20;
+    document.getElementById('r-val').innerText = 20;
+    radius = 20;
+
+    document.getElementById('g-slider').value = 10;
+    document.getElementById('g-val').innerText = 10;
+    gridSize = 10;
+    canvas.style.backgroundSize = `10px 10px`;
+
     render();
 }
 
@@ -162,8 +180,8 @@ function render() {
         const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         c.setAttribute("cx", p.x); c.setAttribute("cy", p.y);
         c.setAttribute("r", 7); c.setAttribute("class", "handle");
-        c.onmousedown = () => draggingIdx = i;
-        c.ontouchstart = (e) => { e.preventDefault(); draggingIdx = i; }; 
+        c.onmousedown = () => { draggingIdx = i; lastInteractedIdx = i; };
+        c.ontouchstart = (e) => { e.preventDefault(); draggingIdx = i; lastInteractedIdx = i; };
         svg.appendChild(c);
     });
 }
