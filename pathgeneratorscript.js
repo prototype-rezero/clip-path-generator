@@ -3,15 +3,16 @@ const svg = document.getElementById('svg-layer');
 const overlay = document.getElementById('mask-overlay');
 const codeBox = document.getElementById('output-code');
 
-// State
+// state
 let points = [{x:20, y:20}, {x:780, y:20}, {x:780, y:480}, {x:20, y:480}];
 let radius = 20;
 let gridSize = 10;
 let draggingIdx = null;
 let lastInteractedIdx = null;
 
+// sliders
 function init() {
-    // Setup Sliders
+   
     setupSlider('w-slider', 'w-val', (v) => {
         canvas.style.width = v + 'px';
         constrainPoints(); // Fix points getting lost outside container
@@ -42,7 +43,7 @@ function setupSlider(id, valId, callback) {
     });
 }
 
-// Keep points inside the container when resizing down
+// keep points inside the container when resizing down
 function constrainPoints() {
     const currentW = parseInt(canvas.style.width);
     const currentH = parseInt(canvas.style.height);
@@ -120,7 +121,6 @@ function drag(e) {
     e.preventDefault();
     const rect = svg.getBoundingClientRect();
 
-    // ✅ Check for touch FIRST, then use those coordinates for rawX/rawY
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -152,7 +152,6 @@ function generatePath(pts, r) {
 
         const currR = Math.min(r, d1/2, d2/2);
         
-        // Avoid dividing by zero if points are stacked
         if (d1 === 0 || d2 === 0) continue; 
 
         const s = { x: p2.x + (v1.x/d1)*currR, y: p2.y + (v1.y/d1)*currR };
@@ -168,7 +167,7 @@ function render() {
     const d = generatePath(points, radius);
     overlay.style.clipPath = `path('${d}')`;
     
-    // Convert to percentages for responsive CSS
+    // convert to percentages for responsive CSS
     let percentD = d;
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
@@ -191,15 +190,14 @@ function render() {
     try {
         await navigator.clipboard.writeText(textToCopy);
         
-        // Optional: Provide visual feedback
         const originalBg = codeBox.style.backgroundColor;
         codeBox.style.backgroundColor = "#000000"; 
         const originalText = codeBox.innerText;
         
-        // Temporarily change text to show "Copied!"
+        // "copied!"
         console.log("Copied to clipboard!");
         
-        // Alert or simple UI feedback
+        // feedback
         alert("CSS Copied to clipboard!");
 
     } catch (err) {
@@ -207,10 +205,10 @@ function render() {
     }
 };
 
-        // Attach the click event to your existing codeBox element
+        // click event to your existing codeBox element
         codeBox.addEventListener('click', copyToClipboard);
 
-        // Add a style hint so users know it's clickable
+        // style hint so users know it's clickable
         codeBox.style.cursor = "pointer";
         codeBox.title = "Click to copy code";
 init();
