@@ -15,11 +15,11 @@ function init() {
    
     setupSlider('w-slider', 'w-val', (v) => {
         canvas.style.width = v + 'px';
-        constrainPoints(); // Fix points getting lost outside container
+        constrainPoints(); // this also fix points getting lost outside container
     });
     setupSlider('h-slider', 'h-val', (v) => {
         canvas.style.height = v + 'px';
-        constrainPoints(); // Fix points getting lost outside container
+        constrainPoints(); // i add this to fix points getting lost outside container
     });
     setupSlider('r-slider', 'r-val', (v) => radius = parseInt(v));
     setupSlider('g-slider', 'g-val', (v) => {
@@ -86,7 +86,7 @@ function deletePoint() {
         const idx = lastInteractedIdx !== null ? lastInteractedIdx : points.length - 1;
         points.splice(idx, 1);
 
-        // Adjust lastInteractedIdx so it doesn't go out of bounds
+        // adjust lastinteractedidx so it doesn't go out of bounds
         if (lastInteractedIdx >= points.length) {
             lastInteractedIdx = points.length - 1;
         }
