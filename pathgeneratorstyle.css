@@ -67,34 +67,26 @@ body {
     background-color: var(--background);
     color: var(--text);
     display: flex;
+    gap: 30px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 20px;
-    margin: 0;
-    min-width: 1240px;
-    max-width: 1240px;
-    margin: 0 auto;
+    overflow: scroll;
+    min-width: fit-content;
+    width: 100%;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    max-width: 1200px;
+    max-width: 1300px;
+    min-width: 1000px;
     width: 100%;
-    justify-content: center;
-    align-items: flex-start; /* Keeps controls from stretching */
+     /* Keeps controls from stretching */
 }
 
 .hhlder {
-    min-width: 1200px;
-    max-width: 1200px;    
     border-radius: 15px;
-    overflow: visible;
     box-shadow: 0 0 20px #471e0627;
     background-color: var(--third);
-    margin-bottom: 30px;
     position: relative;
 }
 
@@ -127,9 +119,8 @@ h2 {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    min-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 20px;
     box-shadow: 0 0 20px #471e0610;
     overflow: auto;
 }
@@ -141,7 +132,7 @@ h2 {
     background-image: 
         linear-gradient(rgba(90, 51, 0, 0.75) 1px, transparent 1px),
         linear-gradient(90deg, rgba(90, 51, 0, 0.75) 1px, transparent 1px);
-    background-size: 20px 20px; /* Default grid size */
+    background-size: 10px 10px; /* Default grid size */
     transition: width 0.3s, height 0.3s;
 }
 
@@ -185,8 +176,6 @@ svg {
     flex-direction: column;
     gap: 1.2rem;
     margin: 0 auto;
-    min-width: 1200px;
-    max-width: 1200px;
     box-shadow: 0 0 20px #471e061f;
 }
 

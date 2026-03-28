@@ -4,9 +4,9 @@ const overlay = document.getElementById('mask-overlay');
 const codeBox = document.getElementById('output-code');
 
 // State
-let points = [{x:40, y:40}, {x:760, y:40}, {x:760, y:460}, {x:40, y:460}];
+let points = [{x:20, y:20}, {x:780, y:20}, {x:780, y:480}, {x:20, y:480}];
 let radius = 20;
-let gridSize = 20;
+let gridSize = 10;
 let draggingIdx = null;
 
 function init() {
@@ -85,7 +85,7 @@ function deletePoint() {
 }
 
 function resetPoints() {
-    points = [{x:40,y:40}, {x:760,y:40}, {x:760,y:460}, {x:40,y:460}];
+    points = [{x:20,y:20}, {x:780,y:20}, {x:780,y:480}, {x:20,y:480}];
     document.getElementById('w-slider').value = 800;
     document.getElementById('w-val').innerText = 800;
     canvas.style.width = '800px';
