@@ -26,7 +26,7 @@ function init() {
         gridSize = parseInt(v);
         canvas.style.backgroundSize = `${gridSize}px ${gridSize}px`;
     });
-
+    
    document.addEventListener('pointermove', drag);
     document.addEventListener('pointerup', () => draggingIdx = null);
     document.addEventListener('pointercancel', () => draggingIdx = null);
